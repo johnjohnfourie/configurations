@@ -1,0 +1,88 @@
+sitemap alarm label="Alarm SCADA CONTROL"
+{
+		Frame label="Alarm Activation" {
+			Switch item=alarm_status_inside mappings=[disarm = "Disarm", stay="Stay", sleep="Sleep", fullarm="Full Arm"]
+			Switch item=alarm_status_outside mappings=[disarm = "Disarm", stay="Stay", sleep="Sleep", fullarm="Full Arm"]
+			
+			Text item=audio_alarm
+			Text item=last_alarm
+	}
+	Frame label="Alarm Zones Overview (Last Action)" {
+			Text item=zone1
+			Text item=zone2
+			Text item=zone3
+			
+			//Selection item=zone1 mappings=[0 = "Disabled", 1="Enabled"]
+			//Switch item=zone1 mappings=[disabled="Disabled"] visibility=[zone1 == "Enabled"] //valuecolor=[zone1 == "enabled" = "green"]		
+			
+	}
+	Frame label="Alarm Activation"{
+		Group label="Alarm Zone Statusses (Enabled/Disabled)" {	
+			Switch item=zone1_status 
+			Switch item=zone2_status
+			Switch item=zone3_status
+			}
+		Group label="Alarm Zone Armed" {
+			//Switch item=inside_armed
+			//Switch item=outside_armed
+			Switch item=zone1_armed
+			Switch item=zone2_armed
+			Switch item=zone3_armed
+		}
+		Group label="Alarm Zone Alarms" {
+			Switch item=zone1_alarm mappings=[ON="Alarm"] visibility=[zone1_alarm==ON]
+			Switch item=zone2_alarm mappings=[ON="Alarm"] visibility=[zone2_alarm==ON]
+			Switch item=zone3_alarm mappings=[ON="Alarm"] visibility=[zone3_alarm==ON]
+		}
+	}
+	
+	Frame label="Alarm Configuration" {
+		Group label="Zone Configuration" {
+			Group item=zone1_config {
+				Switch item=zone1_status
+				Switch item=zone1_group mappings=[inside="Inside", outside="Outside"]
+				Switch item=zone1_stay mappings=[no="No", yes="Yes"]
+				Switch item=zone1_sleep mappings=[no="No", yes="Yes"]
+			}
+			Group item=zone2_config {
+				Switch item=zone2_status
+				Switch item=zone2_group mappings=[inside="Inside", outside="Outside"]
+				Switch item=zone2_stay mappings=[no="No", yes="Yes"]
+				Switch item=zone2_sleep mappings=[no="No", yes="Yes"]
+			}
+			Group item=zone3_config {
+				Switch item=zone3_status
+				Switch item=zone3_group mappings=[inside="Inside", outside="Outside"]
+				Switch item=zone3_stay mappings=[no="No", yes="Yes"]
+				Switch item=zone3_sleep mappings=[no="No", yes="Yes"]
+			}
+		}
+	}
+	
+	Frame label="Alarm Time" {
+		Group label="Alarm Zone Alarm Tests" {
+			Switch item=zone1_alarm
+			Switch item=zone2_alarm
+			Switch item=zone3_alarm
+			
+			Switch item=audio_alarm
+		}
+	}	
+	
+	Frame label="Alarm Time" {
+			Switch item=zone1_status
+			Switch item=zone1_armed
+			Switch item=zone1_alarm
+			Switch item=zone2_status
+			Switch item=zone2_armed
+			Switch item=zone2_alarm
+			Switch item=zone3_status
+			Switch item=zone3_armed
+			Switch item=zone3_alarm
+			
+			Switch item=audio_alarm
+	}
+	
+	Text item=alarm_last_connection
+}
+
