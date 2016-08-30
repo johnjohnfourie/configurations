@@ -1,0 +1,167 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+import org.openhab.action.*
+import org.openhab.binding.*
+//import org.apache.commons.mail.* 
+
+//import java.util.concurrent.locks.ReentrantLock
+
+//Schedule for the implementation of the Sproeiers Timers
+//var Timer timerX
+//var Timer timer_Station0_DOI0
+//var Timer timer_Station0_DOI1
+//var Timer timer_Station0_DOI2
+//var Timer timer_Station0_DOI3
+//var Timer timer_Station0_DOI4
+
+//var Timer timer_Station1_DOI0
+//var Timer timer_Station1_DOI1
+//var Timer timer_Station1_DOI2
+//var Timer timer_Station1_DOI3
+
+var Number counter = 0
+
+rule "Switch Borehole on Automatically if Solenoids open"
+when 
+        //Item Station0 changed from OFF to ON or
+        //Item Station1 changed from OFF to ON
+        Item All_Enabled changed from OFF to ON
+then {
+		if (Master_DOI0 != ON)  {
+			sendCommand(Master_DOI0,ON)
+			sendNotification("johnjohn.fourie@gmail.com", "Borehole switched ON All Enabled")
+  		}
+  	}
+end 
+
+rule "Switch Borehole off Automatically if Solenoids close"
+when 
+        Item Sproeiers changed from ON to OFF
+then {
+	if (Master_DOI0 != OFF) {
+		sendCommand(Master_DOI0,OFF)
+		sendNotification("johnjohn.fourie@gmail.com", "Borehole switched OFF Sproeiers")
+		}
+}  
+end 
+
+rule "Switch Borehole off if Weather Enabled OFF"
+when 
+        Item Weather_Enabled changed from ON to OFF
+then {
+	if (Master_DOI0 != OFF) {
+		sendCommand(Master_DOI0,OFF)
+		sendNotification("johnjohn.fourie@gmail.com", "Borehole switched OFF Weather Disabled")
+		}
+	//Switch off all the sprinklers
+	sendCommand(Station0_DOI0, OFF)
+	sendCommand(Station0_DOI1, OFF)
+	sendCommand(Station0_DOI2, OFF)
+	sendCommand(Station0_DOI3, OFF)
+	sendCommand(Station0_DOI4, OFF)
+	sendCommand(Station0_DOI5, OFF)
+	
+	sendCommand(Station1_DOI0,OFF)
+	sendCommand(Station1_DOI1,OFF)
+	sendCommand(Station1_DOI2,OFF)
+	sendCommand(Station1_DOI3,OFF)
+	
+	sendCommand(Station2_DOI0,OFF)
+	sendCommand(Station2_DOI1,OFF)
+	sendCommand(Station2_DOI2,OFF)
+	sendCommand(Station2_DOI3,OFF)
+	
+	sendCommand(Station3_DOI0,OFF)
+	sendCommand(Station3_DOI1,OFF)
+	sendCommand(Station3_DOI2,OFF)
+	sendCommand(Station3_DOI3,OFF)
+	sendCommand(Station3_DOI4,OFF)
+	
+	sendCommand(Station4_DOI0,OFF)
+	sendCommand(Station4_DOI1,OFF)
+	sendCommand(Station4_DOI2,OFF)
+	sendCommand(Station4_DOI3,OFF)
+	sendCommand(Station4_DOI4,OFF)
+	sendCommand(Station4_DOI5,OFF)
+}  
+end
+
+rule "Put schedule back in rules directory"
+when 
+        Item Weather_Enabled changed from OFF to ON
+then {
+	sendCommand(Update_Schedule,ON)
+}  
+end  
+
+
+ // increase the counter at midnight
+    rule "Increase counter"
+    when
+        Item Network_Status changed from ON to OFF
+    then
+        counter = counter + 1
+        if (counter > 10) {
+        	if (Master_DOI0 != OFF) {
+			sendCommand(Master_DOI0,OFF)
+			sendNotification("johnjohn.fourie@gmail.com", "Borehole switched OFF Network Status")
+		}
+        }
+end
+
+rule "Reset counter"
+when
+	System started or
+	Item Network_Status changed from OFF to ON
+then
+	counter = 0
+end
+
+rule "Refresh schedule automatically once a day"
+when
+	Time cron "0 0 0 * * ?"		//Evaluate every day at midnight
+then
+	if (Weather_Enabled != OFF) {
+		sendCommand(Update_Schedule,ON)
+		}
+end
+
+//rule "Switch Borehole off if Network Status OFF"
+//when 
+//       Item Network_Status changed from ON to OFF
+//then {
+//	if (Master_DOI0 != OFF) {
+//		sendCommand(Master_DOI0,OFF)
+//		}
+//}  
+//end 
+
+//rule "Timer DOIX start"
+//when 
+//	Time cron "00 10 10 * * ?"
+//then {
+//	sendCommand(Station0_DOI2,ON)
+//	if (timerX != null) {
+//   		timerX.cancel
+//    		timerX = null
+//    		timerX = createTimer(now.plusSeconds(30)) [| sendCommand(Station0_DOI2,OFF)]
+//    	}
+//    else {
+//    	timerX = createTimer(now.plusSeconds(30)) [| sendCommand(Station0_DOI2,OFF)]
+//    }
+//}
+//end
+
+//Insert the rule for the schedule as received from the Excel Spreadsheet
+//rule "Timer Station0_DOI0 start 00:00" when Time cron "0 0 0 ? * 1,2,3" then {sendCommand(Station0_DOI0,ON) if (timer_Station0_DOI0 != null) {timer_Station0_DOI0.cancel timer_Station0_DOI0 = null timer_Station0_DOI0 = createTimer(now.plusMinutes(10)) [| sendCommand(Station0_DOI0,OFF)] } else { timer_Station0_DOI0 = createTimer(now.plusMinutes(10)) [| sendCommand(Station0_DOI0,OFF)] } } end
+
+
+//Email will be send if Network Status goes down
+//rule "Check if Master_Status is ON"
+//when
+//	Item Master_Status changed from ON to OFF
+//	then {
+//		//sendMail('johnjohn.fourie@gmail.com',"441 Lara Street Message Network Down","This message is to inform you that Master station is down")		
+//	}
+//end

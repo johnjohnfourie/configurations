@@ -1,0 +1,87 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+import org.openhab.action.*
+import org.openhab.binding.*
+
+//import java.util.concurrent.locks.ReentrantLock
+
+//    var java.util.concurrent.locks.ReentrantLock lock  = new java.util.concurrent.locks.ReentrantLock()
+
+ rule "Iniatite Sproeiers" //ConcurrentCode
+    when
+       	System started
+    then
+    {
+        //lock.lock()
+        //try {
+            // do stuff (e.g. create and start a timer ...)
+            sendCommand(Master_DOI0,OFF)
+			//sendCommand(Master_DOI1,OFF)
+			sendCommand(Station0_DOI0,OFF)
+			sendCommand(Station0_DOI1,OFF)
+			sendCommand(Station0_DOI2,OFF)
+			sendCommand(Station0_DOI3,OFF)
+			sendCommand(Station0_DOI4,OFF)
+			sendCommand(Station0_DOI5,OFF)
+			sendCommand(Station0_DOI6,OFF)
+			sendCommand(Station1_DOI0,OFF)
+			sendCommand(Station1_DOI1,OFF)
+			sendCommand(Station1_DOI2,OFF)
+			sendCommand(Station1_DOI3,OFF)
+			sendCommand(Station2_DOI0,OFF)
+			sendCommand(Station2_DOI1,OFF)
+			sendCommand(Station2_DOI2,OFF)
+			sendCommand(Station2_DOI3,OFF)
+			sendCommand(Station3_DOI0,OFF)
+			sendCommand(Station3_DOI1,OFF)
+			sendCommand(Station3_DOI2,OFF)
+			sendCommand(Station3_DOI3,OFF)
+			sendCommand(Station3_DOI4,OFF)
+			sendCommand(Station3_DOI5,OFF)
+			sendCommand(Station4_DOI0,OFF)
+			sendCommand(Station4_DOI1,OFF)
+			sendCommand(Station4_DOI2,OFF)
+			sendCommand(Station4_DOI3,OFF)
+			sendCommand(Station4_DOI4,OFF)
+			sendCommand(Station4_DOI5,OFF)
+        //} finally{
+        //   lock.unlock()
+        }
+    end
+    
+rule "Iniatite Lights"
+    when
+       	System started
+    then
+    {
+            sendCommand(Lights_DOI0,OFF)
+			sendCommand(Lights_DOI1,OFF)
+			sendCommand(Lights_DOI2,OFF)
+			sendCommand(Lights_DOI3,OFF)
+        }
+    end
+	
+rule "Iniatite Remotes"
+    when
+       	System started
+    then
+    {
+            sendCommand(Remote_DOI0,OFF)
+			sendCommand(Remote_DOI1,OFF)
+			sendCommand(Remote_DOI2,OFF)
+			sendCommand(Remote_DOI3,OFF)
+			sendCommand(Remote_DOI4,OFF)
+			sendcommand(Remote_DOI5,OFF)
+			sendCommand(Remote_DOI6,OFF)
+        }
+    end
+	
+rule "Iniatite Kluis"
+    when
+       	System started
+    then
+    {
+            sendCommand(Kluis_DOI1,OFF)
+        }
+    end
