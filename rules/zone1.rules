@@ -1,0 +1,181 @@
+import org.joda.time.DateTime
+import org.openhab.core.library.types.DateTimeType
+
+//Zone Rules
+rule "Zone1 Enabled"
+when
+	Item zone1_status changed from OFF to ON
+then
+	if (zone1_armed.state == ON) {
+	}
+	else {
+	postUpdate(zone1, "Enabled: " + new DateTimeType())
+	//logInfo("Zone1 Alarm Status Enabled" + new DateTimeType(), logMessage)
+	//Display message on phone
+	//Email alert if required
+	}
+end
+
+rule "Zone1 Disabled"
+when
+	Item zone1_status changed from ON to OFF
+then
+	if (zone1_armed.state == ON) {
+	sendCommand(zone1_status, ON)
+	}
+	else {
+		postUpdate(zone1, "Disabled: " + new DateTimeType())
+		//logInfo("Zone1 Alarm Status Disabled" + new DateTimeType(), logMessage)
+		//logInfo("Irrigation", logMessage)
+        //send("ben.jones12@gmail.com", logMessage)
+	}
+end
+
+rule "Zone1 Alarm Armed"
+when
+	Item zone1_armed changed from OFF to ON
+then
+	if (zone1_status.state == ON) {
+			postUpdate(zone1, "Armed: " + new DateTimeType())
+			//logInfo("Zone1 Alarm Disarmed" + new DateTimeType(), logMessage)
+			//Use myOpenhab to sendCommand
+		}
+	if (zone1_status.state == OFF) {
+			sendCommand(zone1_armed,OFF)
+		}
+end
+
+rule "Zone1 Alarm Disarmed"
+when
+	Item zone1_armed changed from ON to OFF
+then
+	//if (zone1_status.state == OFF) {
+	//}
+	//else {
+		if (zone1_status.state == ON && zone1_alarm.state == OFF) {
+			postUpdate(zone1, "Disarmed: " + new DateTimeType())
+			sendCommand(zone1_alarm,OFF)
+			}
+		if (zone1_status.state == ON && zone1_alarm.state == ON) {
+			postUpdate(zone1, "AlarmDisarmed: " + new DateTimeType())
+			sendCommand(zone1_alarm,OFF)
+			}
+	//	}
+end
+
+rule "Zone1 Alarm Detected"
+when
+	Item zone1_alarm changed from OFF to ON
+then
+	if (zone1_status.state == ON && zone1_armed.state == ON) {
+	postUpdate(zone1, "Alarm: " + new DateTimeType())
+	sendCommand(audio_alarm, ON)
+	//Enable logging
+	//Use myOpenhab
+	}
+	else {
+		sendCommand(zone1_alarm, OFF)
+	}
+end
+
+rule "Zone1 Alarm cannot switch off"
+when 
+	Item zone1_alarm changed from ON to OFF
+then
+	if (zone1_armed.state == ON) {
+		sendCommand(zone1_alarm,ON)
+	}
+end
+
+//Group Configuration Rules
+//Inside Group
+rule "Zone1 Configuration change"
+when
+	Item zone1_status changed or
+	Item zone1_group changed or
+	Item zone1_stay changed or
+	Item zone1_sleep changed
+then
+	//if (zone1_armed == ON && zone1_status == ON) {
+	//	sendCommand(zone1_status, ON)
+	//}
+	//else {
+	//	sendCommand(alarm_status_inside,"disarm")
+		postUpdate(zone1_config, "Status: " + zone1_status.state + " Group: " + zone1_group.state + " Stay: " + zone1_stay.state + " Sleep: "+ zone1_sleep.state + " Last_Changed: " + new DateTimeType())
+	//}
+end
+
+//Alarm Activiation Rules
+rule "Zone1 Inside Statuses"
+when
+	Item alarm_status_inside changed
+then
+	if (zone1_group.state == "inside") {
+		sendCommand(zone1_armed,OFF)
+	}
+	//Disarmed
+	if (alarm_status_inside.state == "disarm") {
+		if (zone1_status.state == ON && zone1_group.state == "inside" && zone1_armed.state == ON) {
+			sendCommand(zone1_armed, OFF)
+		}
+	}
+	
+	//Stay Armed
+	if (alarm_status_inside.state == "stay") {
+			if (zone1_status.state == ON && zone1_group.state == "inside" && zone1_stay.state == "yes") {
+				sendCommand(zone1_armed, ON)
+			}
+	}
+	
+	//Sleep Armed
+	if (alarm_status_inside.state == "sleep") {
+			if (zone1_status.state == ON && zone1_group.state == "inside" && zone1_sleep.state == "yes") {
+				sendCommand(zone1_armed, ON)
+			}
+			
+	}
+	
+	//Full Arm
+	if (alarm_status_inside.state == "fullarm") {
+		if (zone1_status.state == ON && zone1_group.state == "inside") {
+				sendCommand(zone1_armed, ON)
+			}
+	}
+end
+
+rule "Zone1 outside Statuses"
+when
+	Item alarm_status_outside changed
+then
+	if (zone1_group.state == "outside") {
+		sendCommand(zone1_armed,OFF)
+	}
+	
+	//Disarmed
+	if (alarm_status_outside.state == "disarm") {
+		if (zone1_status.state == ON && zone1_group.state == "outside" && zone1_armed.state == ON) {
+			sendCommand(zone1_armed, OFF)
+		}
+	}
+	
+	//Stay Armed
+	if (alarm_status_outside.state == "stay") {
+			if (zone1_status.state == ON && zone1_group.state == "outside" && zone1_stay.state == "yes") {
+				sendCommand(zone1_armed, ON)
+			}
+	}
+	
+	//Sleep Armed
+	if (alarm_status_outside.state == "sleep") {
+			if (zone1_status.state == ON && zone1_group.state == "outside" && zone1_sleep.state == "yes") {
+				sendCommand(zone1_armed, ON)
+			}
+	}
+	
+	//Full Arm
+	if (alarm_status_outside.state == "fullarm") {
+		if (zone1_status.state == ON && zone1_group.state == "outside") {
+				sendCommand(zone1_armed, ON)
+			}
+	}
+end
