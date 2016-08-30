@@ -1,0 +1,1 @@
+Switch Kluis_DOI1	"Kluis Fan Motor"	{http=">[ON:POST:http://192.168.1.15/GPIO/17/value/1] >[OFF:POST:http://192.168.1.15/GPIO/17/value/0]"}

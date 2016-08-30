@@ -1,0 +1,121 @@
+import org.openhab.model.script.actions.*
+var Timer timer_Remote_DOI0
+var Timer timer_Remote_DOI1
+var Timer timer_Remote_DOI2
+var Timer timer_Remote_DOI3
+var Timer timer_Remote_DOI4
+var Timer timer_Remote_DOI5
+var Timer timer_Remote_DOI6
+
+rule "Timer Remote_DOI0 release"
+when 
+	Item Remote_DOI0 changed to ON
+
+then {
+if (timer_Remote_DOI0 != null) {
+	timer_Remote_DOI0.cancel
+	timer_Remote_DOI0 = null
+  		timer_Remote_DOI0 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI0,OFF)]
+   	}
+    else {
+	   	timer_Remote_DOI0 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI0,OFF)]
+    }
+}
+end
+
+rule "Timer Remote_DOI1 release"
+when 
+ Item Remote_DOI1 changed to ON
+
+then {
+if (timer_Remote_DOI1 != null) {
+ timer_Remote_DOI1.cancel
+ timer_Remote_DOI1 = null
+    timer_Remote_DOI1 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI1,OFF)]
+    }
+    else {
+     timer_Remote_DOI1 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI1,OFF)]
+    }
+}
+end
+
+rule "Timer Remote_DOI2 release"
+when 
+ Item Remote_DOI2 changed to ON
+
+then {
+if (timer_Remote_DOI2 != null) {
+ timer_Remote_DOI2.cancel
+ timer_Remote_DOI2 = null
+    timer_Remote_DOI2 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI2,OFF)]
+    }
+    else {
+     timer_Remote_DOI2 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI2,OFF)]
+    }
+}
+end
+
+rule "Timer Remote_DOI3 release"
+when 
+ Item Remote_DOI3 changed to ON
+
+then {
+if (timer_Remote_DOI3 != null) {
+ timer_Remote_DOI3.cancel
+ timer_Remote_DOI3 = null
+    timer_Remote_DOI3 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI3,OFF)]
+    }
+    else {
+     timer_Remote_DOI3 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI3,OFF)]
+    }
+}
+end
+
+rule "Timer Remote_DOI4 release"
+when 
+ Item Remote_DOI4 changed to ON
+
+then {
+if (timer_Remote_DOI4 != null) {
+ timer_Remote_DOI4.cancel
+ timer_Remote_DOI4 = null
+    timer_Remote_DOI4 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI4,OFF)]
+    }
+    else {
+     timer_Remote_DOI4 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI4,OFF)]
+    }
+}
+end
+
+rule "Timer Remote_DOI5 release"
+when 
+ Item Remote_DOI5 changed to ON
+
+then {
+if (timer_Remote_DOI5 != null) {
+ timer_Remote_DOI5.cancel
+ timer_Remote_DOI5 = null
+    timer_Remote_DOI5 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI5,OFF)]
+    }
+    else {
+     timer_Remote_DOI5 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI5,OFF)]
+    }
+}
+end
+
+rule "Timer Remote_DOI6 release"
+when 
+ Item Remote_DOI6 changed to ON
+
+then {
+if (timer_Remote_DOI6 != null) {
+ timer_Remote_DOI6.cancel
+ timer_Remote_DOI6 = null
+    timer_Remote_DOI6 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI6,OFF)]
+    }
+    else {
+     timer_Remote_DOI6 = createTimer(now.plusSeconds(1)) [| sendCommand(Remote_DOI6,OFF)]
+    }
+}
+end
+

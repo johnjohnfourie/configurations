@@ -1,0 +1,266 @@
+sitemap 441LaraStreet label="441 Lara Street Overview"
+{
+	Frame label="Sproeiers Overview"  {
+		Switch item=Update_Schedule mappings=[ON="Update"]
+		Text label="Manual Switching" icon="cistern-50" {
+			Group item=Master label="Master Station" icon="energy" {
+				Switch item=Master_DOI0	
+				Text item=Master_DOI0_Status
+				Switch item=Master_DOI1 mappings=[ON="Go!"]
+				Text item=Master_DOI1_Status
+				//Text item=Weather_Temperature
+				//Text item=sunrise
+				
+				//Text item=Sproeier_Counter
+				}
+			Group item=Station0 label="Station0" icon="sprinkler"	{
+				Switch item=Station0_DOI0
+				Switch item=Station0_DOI1
+				Switch item=Station0_DOI2
+				Switch item=Station0_DOI3
+				Switch item=Station0_DOI4
+				Switch item=Station0_DOI5
+				Switch item=Station0_DOI6
+				Switch item=Master_DOI0
+				Switch item=Sproeiers
+				Switch item=Station0_Status
+			}
+			
+			Group item=Station1 label="Station1" icon="sprinkler"	{
+				Switch item=Station1_DOI0
+				Switch item=Station1_DOI1
+				Switch item=Station1_DOI2
+				Switch item=Station1_DOI3
+				Switch item=Master_DOI0
+				Switch item=Sproeiers
+				Switch item=Station1_Status
+			}
+			
+			Group item=Station2 label="Station2" icon="sprinkler"	{
+				Switch item=Station2_DOI0
+				Switch item=Station2_DOI1
+				Switch item=Station2_DOI2
+				Switch item=Station2_DOI3
+				Switch item=Master_DOI0
+				Switch item=Sproeiers
+			}
+			Group item=Station3 label="Station3" icon="sprinkler"	{
+				Switch item=Station3_DOI0
+				Switch item=Station3_DOI1
+				Switch item=Station3_DOI2
+				Switch item=Station3_DOI3
+				Switch item=Station3_DOI4
+				Switch item=Station3_DOI5
+				
+				//Text item=StationX_DOIX
+				Switch item=Station1_DOI1_Alarm
+				}
+			Group item=Station4 label="Station4" icon="sprinkler"	{
+				Switch item=Station4_DOI0
+				Switch item=Station4_DOI1
+				Switch item=Station4_DOI2
+				Switch item=Station4_DOI3
+				Switch item=Station4_DOI4
+				Switch item=Station4_DOI5
+				}
+		}
+		Group item=Schedule label="Scheduled Switching" icon="cistern-0"	{
+			Switch item=Weather_Enabled
+			Switch item=All_Enabled
+			Switch item=Sproeiers	
+			Switch item=Network_Status
+			Switch item=Master_DOI0
+			Switch item=Master_DOI1
+			Switch item=Station0_DOI0
+			Switch item=Station0_DOI1
+			Switch item=Station0_DOI2
+			Switch item=Station0_DOI3
+			Switch item=Station0_DOI4
+			Switch item=Station0_DOI5
+			Switch item=Station0_DOI6
+			Switch item=Station1_DOI0
+			Switch item=Station1_DOI1
+			Switch item=Station1_DOI2
+			Switch item=Station1_DOI3
+			Switch item=Station2_DOI0
+			Switch item=Station2_DOI1
+			Switch item=Station2_DOI2
+			Switch item=Station2_DOI3
+			Switch item=Station3_DOI0
+			Switch item=Station3_DOI1
+			Switch item=Station3_DOI2
+			Switch item=Station3_DOI3
+			Switch item=Station3_DOI4
+			Switch item=Station4_DOI0
+			Switch item=Station4_DOI1
+			Switch item=Station4_DOI2
+			Switch item=Station4_DOI3
+			Switch item=Station4_DOI4
+			Switch item=Station4_DOI5
+		}
+		Text label="Sproeiers Scheduled Calendar" icon="video" {
+			Frame label="Week Schedule" {
+				Webview url="http://192.168.1.6/sproeierscalendar/csvtohtml.php" height=21
+			}
+		}
+	}
+	
+	Frame label="Network Status" {
+		Group item=OnlineStatus label="OnLine Status Monitoring" icon="graph" {
+			Switch item=Master_Status
+			Switch item=Station0_Status
+			Switch item=Station1_Status
+			Switch item=Station2_Status
+			Switch item=Station3_Status
+			Switch item=Station4_Status
+			Switch item=Network_Status
+		}
+	}
+	
+	Frame label="Light Schedules" {
+		Group item=OnlineStatus label="Light Schedules" icon="present" {
+			Switch item=Lights_DOI0
+			Switch item=Lights_DOI1
+			Switch item=Lights_DOI2
+			Switch item=Lights_DOI3
+			Switch item=Lights_Tree_All
+			Switch item=Lights_Wave
+		}
+	}
+	
+	Frame label="Remote Access" {
+	Group item=Station0 label="Remote Access" icon="siren"	{	
+		Switch item=Remote_DOI0 mappings=[ON="Push"]
+		Switch item=Remote_DOI1 mappings=[ON="Push"]
+		Switch item=Remote_DOI2 mappings=[ON="Push"]
+		Switch item=Remote_DOI3 mappings=[ON="Push"]
+		Switch item=Remote_DOI4 mappings=[ON="Push"]
+		Switch item=Remote_DOI5 mappings=[ON="Push"]
+		Switch item=Remote_DOI6 mappings=[ON="Push"]
+		}
+	}
+		
+	Frame label="Security" {
+		Text label="Kluis" icon="video" {
+			Frame label="Kluis Control" {
+				Switch item=Kluis_DOI1
+				}
+				/*Video url="https://192.168.1.11/index.cgi"*/
+				//Webview url="https://192.168.1.11" height=22
+				//Webview url="https://docs.google.com/spreadsheets/d/1CxJhv13BM41nzQ4Zk4_oAATUTZBwEn6mbMoN01PU7bo/edit#gid=1934851862&vpid=C83" height=21
+			}
+		Text label="Cameras" icon="video" {
+			Frame label="Lounge" {
+				/*Image url="http://localhost:8080/images/splash-ipad-h.png" label="openHAB" {
+					Text label="http://www.openHAB.org" icon="icon"
+				}*/
+				/*Video url="https://192.168.1.11/index.cgi"*/
+				Webview url="https://192.168.1.11" height=22
+				//Webview url="https://docs.google.com/spreadsheets/d/1CxJhv13BM41nzQ4Zk4_oAATUTZBwEn6mbMoN01PU7bo/edit#gid=1934851862&vpid=C83" height=21
+			}
+		}
+		}
+				
+		Frame label="Alarm" {
+		Text label="Paradox Control" icon="paradox" {
+			Frame label="Paradox" icon="paradox"{
+				/*Image url="http://localhost:8080/images/splash-ipad-h.png" label="openHAB" {
+					Text label="http://www.openHAB.org" icon="icon"
+				}*/
+				/*Video url="https://192.168.1.11/index.cgi"*/
+				Webview url="http://192.168.1.150/" height=21
+			}
+		}
+	}
+	
+	Frame label="History" icon="weather" {
+	Text label="Trending" icon="weather" {
+			Frame label="Trends from Habmin2" {
+				Webview url="http://192.168.1.6:8080/habmin2/#/chart" height=19
+			}
+		}	
+	}
+	
+	Frame label="Weather Forecast" icon="weather" {
+		Text item=Sunrise_Time
+		Text item=Sunset_Time
+		Text item=Astronomical_Dawn_Start
+		Text item=Astronomical_Dawn_End
+	Text label="WMR200 Data" icon="weather" {
+			Frame label="WMR200 Minutely Updated" {
+				Webview url="http://192.168.1.6/WsDataLogger/SimpleResult.htm" height=19
+			}
+			}
+	Text label="Weather Forecasts" icon="weather" {
+			Frame label="Rain Forecasts" {
+			Webview url="http://www.weatherphotos.co.za/rain-forcasts-1-2-weeks.html" height=40
+			}
+			Frame label="Max Temperature Forecasts" {
+			Webview url="http://www.1stweather.com/maps/AVN_TX_day1.gif" height=17
+			}
+			Frame label="Min Temperature Forecasts" {
+			Webview url="http://www.1stweather.com/maps/AVN_TN_day1.gif" height=17
+			}
+	}
+	}
+	
+	
+	/* 
+	Frame label="Summary" {
+		Text label="Group Demo" icon="firstfloor" {
+			Switch item=Lights mappings=[OFF="All Off"]
+			Group item=Heating
+			Group item=Windows
+			Text item=Temperature
+		}
+		Text label="Widget Overview" icon="chart" {
+			Frame label="Binary Widgets" {
+				Switch item=DemoSwitch label="Toggle Switch"
+				Switch item=DemoSwitch label="Button Switch" mappings=[ON="On"]
+			}
+			Frame label="Discrete Widgets" {
+				Selection item=Scene_General label="Scene Selection" mappings=[0=off, 1=TV, 2=Dinner, 3=Reading]
+				Switch item=Scene_General label="Scene" mappings=[1=TV, 2=Dinner, 3=Reading]
+				Setpoint item=Temperature_Setpoint minValue=16 maxValue=28 step=0.5
+			}
+			Frame label="Percent-based Widgets" {
+				Slider item=DimmedLight switchSupport
+				Colorpicker item=RGBLight icon="slider"
+				Switch item=DemoShutter
+				Slider item=DemoBlinds
+			}
+		}
+		Text label="Multimedia" icon="video" {
+			Frame label="Radio Control" {
+				Selection item=Radio_Station mappings=[0=off, 1=HR3, 2=SWR3, 3=FFH]
+				Slider item=Volume
+			}
+			Frame label="Multimedia Widgets" {
+				Image url="http://localhost:8080/images/splash-ipad-h.png" label="openHAB" {
+					Text label="http://www.openHAB.org" icon="icon"
+				}
+				Video url="http://demo.openhab.org/Hue.m4v"
+				Webview url="http://heise-online.mobi/" height=8
+			}
+		}
+		Text label="Graphs" {
+			
+			Frame {
+  				Switch item=Weather_Chart_Period label="Chart Period:" mappings=[0="Hour", 1="Day", 2="Week"]
+  				Chart item=Weather_Chart period=h refresh=600 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="Uninitialized"]
+  				Chart item=Weather_Chart period=D refresh=1800 visibility=[Weather_Chart_Period==1]
+  				Chart item=Weather_Chart period=W refresh=3600 visibility=[Weather_Chart_Period==2]
+  				
+  				Chart item=Sproeiers_Graph period=W refresh=300
+  			}   
+			
+			Frame label="Dummy" {
+			
+				Switch item=Master_DOI1
+				Text item=Weather_LastUpdate visibility=[Weather_LastUpdate>30] valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+  			}
+			
+		}
+	}*/
+}
+

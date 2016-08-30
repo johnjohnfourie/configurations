@@ -1,0 +1,10 @@
+
+
+Switch	Lights_DOI0	"White Lights"			(Light_All_On)	{http=">[ON:POST:http://192.168.1.113/setDigitalPin?pin=0&state=true] >[OFF:POST:http://192.168.1.113/setDigitalPin?pin=0&state=false]"}
+Switch	Lights_DOI1	"Blue Lights"			(Light_All_On)	{http=">[ON:POST:http://192.168.1.113/setDigitalPin?pin=1&state=true] >[OFF:POST:http://192.168.1.113/setDigitalPin?pin=1&state=false]"}
+Switch	Lights_DOI2	"Pink Lights"			(Light_All_On)	{http=">[ON:POST:http://192.168.1.113/setDigitalPin?pin=2&state=true] >[OFF:POST:http://192.168.1.113/setDigitalPin?pin=2&state=false]"}
+Switch	Lights_DOI3	"Green Lights"			(Light_All_On)	{http=">[ON:POST:http://192.168.1.113/setDigitalPin?pin=3&state=true] >[OFF:POST:http://192.168.1.113/setDigitalPin?pin=3&state=false]"}
+
+Switch	Lights_Tree_All	"All Tree Lights Status"
+
+Switch	Lights_Wave	"Pattern Lights"	{http=">[ON:POST:http://192.168.1.113/wave]"}

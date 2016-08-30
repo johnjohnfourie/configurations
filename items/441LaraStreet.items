@@ -1,0 +1,78 @@
+Group:Switch:OR(ON,OFF)	Sproeiers	(All_Enabled)
+//Group	Sproeiers_Graph	""
+Group:Switch:OR(ON,OFF)	Master
+Group:Switch:OR(ON,OFF)	Station0	(Sproeiers)	
+Group:Switch:OR(ON,OFF)	Station1	(Sproeiers)
+Group:Switch:OR(ON,OFF)	Station2	(Sproeiers)
+Group:Switch:OR(ON,OFF)	Station3	(Sproeiers)
+Group:Switch:OR(ON,OFF)	Station4	(Sproeiers)	
+
+Group:Switch:AND(ON,OFF)	Network_Status "Network Status"	(All_Enabled)	
+
+Switch	Master_DOI0	"Borehole"		(Master)	{http=">[ON:POST:http://192.168.1.250:8000/GPIO/17/value/0] >[OFF:POST:http://192.168.1.250:8000/GPIO/17/value/1]"}	
+Switch	Master_DOI1	"Keep_Alive"	(Master)	{autoupdate="false"}//{exec="OFF:ssh pi@192.168.1.9 ./wiringPi/test.py"}
+
+Switch	Station0_DOI0	"SirkelTuin"			(Station0)	{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=0&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=0&state=false]"}
+Switch	Station0_DOI1	"HedgeNoord"			(Station0)	{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=1&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=1&state=false]"}
+Switch	Station0_DOI2	"KwekeryOos"			(Station0)	{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=2&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=2&state=false]"}
+Switch	Station0_DOI3	"KwekeryWes"			(Station0)	{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=3&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=3&state=false]"}
+Switch	Station0_DOI4	"Tuin Hoofslaap Kamer"	(Station0)	{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=4&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=4&state=false]"}
+Switch	Station0_DOI5	"Tuin Voor"				(Station0)	{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=5&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=5&state=false]"}
+Switch	Station0_DOI6	"Dummy"					(Station0)	//{http=">[ON:POST:http://192.168.1.235/setDigitalPin?pin=6&state=true] >[OFF:POST:http://192.168.1.235/setDigitalPin?pin=6&state=false]"}
+
+Switch	Station1_DOI0	"Vrugtebome Onder"		(Station1)	{http=">[ON:POST:http://192.168.1.218:8000/GPIO/17/value/1] >[OFF:POST:http://192.168.1.218:8000/GPIO/17/value/0]"}
+Switch	Station1_DOI1	"Vrugtebome Bo"			(Station1)	{http=">[ON:POST:http://192.168.1.218:8000/GPIO/18/value/1] >[OFF:POST:http://192.168.1.218:8000/GPIO/18/value/0]"}
+Switch	Station1_DOI2	"Heining Witstinkhoute"	(Station1)	{http=">[ON:POST:http://192.168.1.218:8000/GPIO/27/value/1] >[OFF:POST:http://192.168.1.218:8000/GPIO/27/value/0]"}
+Switch	Station1_DOI3	"Heining Tuin"			(Station1)	{http=">[ON:POST:http://192.168.1.218:8000/GPIO/23/value/1] >[OFF:POST:http://192.168.1.218:8000/GPIO/23/value/0]"}
+
+Switch	Station2_DOI0	"Ou Houte"			(Station2)	{http=">[ON:POST:http://192.168.1.111/setDigitalPin?pin=0&state=true] >[OFF:POST:http://192.168.1.111/setDigitalPin?pin=0&state=false]"}
+Switch	Station2_DOI1	"Maple Trees"		(Station2)	{http=">[ON:POST:http://192.168.1.111/setDigitalPin?pin=1&state=true] >[OFF:POST:http://192.168.1.111/setDigitalPin?pin=1&state=false]"}
+Switch	Station2_DOI2	"Lavenders"			(Station2)	{http=">[ON:POST:http://192.168.1.111/setDigitalPin?pin=2&state=true] >[OFF:POST:http://192.168.1.111/setDigitalPin?pin=2&state=false]"}
+Switch	Station2_DOI3	"Bome Onder Noord"	(Station2)	{http=">[ON:POST:http://192.168.1.111/setDigitalPin?pin=3&state=true] >[OFF:POST:http://192.168.1.111/setDigitalPin?pin=3&state=false]"}
+
+Switch	Station3_DOI0	"Suid Wes Heining"	(Station3)	{http=">[ON:POST:http://192.168.1.156:8000/GPIO/4/value/0] >[OFF:POST:http://192.168.1.156:8000/GPIO/4/value/1]"}
+Switch	Station3_DOI1	"Suid Oos Heining"	(Station3)	{http=">[ON:POST:http://192.168.1.156:8000/GPIO/17/value/0] >[OFF:POST:http://192.168.1.156:8000/GPIO/17/value/1]"}
+Switch	Station3_DOI2	"Garage Tuin"		(Station3)	{http=">[ON:POST:http://192.168.1.156:8000/GPIO/18/value/0] >[OFF:POST:http://192.168.1.156:8000/GPIO/18/value/1]"}
+Switch	Station3_DOI3	"Roos Tuin"			(Station3)	{http=">[ON:POST:http://192.168.1.156:8000/GPIO/27/value/0] >[OFF:POST:http://192.168.1.156:8000/GPIO/27/value/1]"}
+Switch	Station3_DOI4	"Voorpad Suid"		(Station3)	{http=">[ON:POST:http://192.168.1.156:8000/GPIO/22/value/0] >[OFF:POST:http://192.168.1.156:8000/GPIO/22/value/1]"}
+
+Switch	Station3_DOI5	"Swembad Pomp"					{http=">[ON:POST:http://192.168.1.156:8000/GPIO/23/value/0] >[OFF:POST:http://192.168.1.156:8000/GPIO/23/value/1]"}
+
+Switch	Station4_DOI0	"Voorpad Noord Oos Agter"		(Station4)	{http=">[ON:POST:http://192.168.1.155:8000/GPIO/17/value/0] >[OFF:POST:http://192.168.1.155:8000/GPIO/17/value/1]"}
+Switch	Station4_DOI1	"Voorpad Noord Oos Voor"		(Station4)	{http=">[ON:POST:http://192.168.1.155:8000/GPIO/18/value/0] >[OFF:POST:http://192.168.1.155:8000/GPIO/18/value/1]"}
+Switch	Station4_DOI2	"Voorpad Noord Oos Sirkel"		(Station4)	{http=">[ON:POST:http://192.168.1.155:8000/GPIO/27/value/0] >[OFF:POST:http://192.168.1.155:8000/GPIO/27/value/1]"}
+Switch	Station4_DOI3	"Leylandies Noord"				(Station4)	{http=">[ON:POST:http://192.168.1.155:8000/GPIO/22/value/0] >[OFF:POST:http://192.168.1.155:8000/GPIO/22/value/1]"}
+Switch	Station4_DOI4	"Noord Oos Rotstuin"			(Station4)	{http=">[ON:POST:http://192.168.1.155:8000/GPIO/23/value/0] >[OFF:POST:http://192.168.1.155:8000/GPIO/23/value/1]"}
+Switch	Station4_DOI5	"Woodlands Garden"				(Station4)	{http=">[ON:POST:http://192.168.1.155:8000/GPIO/24/value/0] >[OFF:POST:http://192.168.1.155:8000/GPIO/24/value/1]"}
+
+//Number StationX_DOIX	"Light Sensor [%.1f]"		{http="<[http://192.168.1.238:8000/GPIO/22/value:1000:REGEX(*)]"}
+Switch Station1_DOI1_Alarm	"Light Sensor Alarm"	{http=">[ON:POST:http://192.168.1.218:8000/GPIO/22/value/1] >[OFF:POST:http://192.168.1.218:8000/GPIO/22/value/0]"}
+
+Switch	Master_Status	"Master_Station"	(Network_Status)		{ nh="192.168.1.250" }
+Switch	Station0_Status	"Station0"			(Network_Status)		{ nh="192.168.1.235" }
+Switch	Station1_Status	"Station1"			(Network_Status)		{ nh="192.168.1.218" }
+Switch	Station2_Status	"Station2"			(Network_Status)		{ nh="192.168.1.111" }
+Switch	Station3_Status	"Station3"			(Network_Status)		{ nh="192.168.1.156" }
+Switch	Station4_Status	"Station4"			(Network_Status)		{ nh="192.168.1.155" }	
+
+String Master_DOI0_Status	"Borehole Status [%s]"	//{http="<[http://localhost:8080/rest/items/Master_DOI0:5000:REGEX(.*?<state>(.*?)</state>.*)]"}
+String Master_DOI1_Status	"Keep Alive Status [%s]"	//{http="<[http://localhost:8080/rest/items/Master_DOI1:5000:REGEX(.*?<state>(.*?)</state>.*)]"}
+
+Switch Weather_Enabled	"Weather Enabled"	(All_Enabled)	{exec="OFF:./configurations/rules/scheduleOFF.bat"}
+
+Group:Switch:AND(ON,OFF) All_Enabled
+
+Switch Update_Schedule	"Update the automatic Schedule adjusting to sunrise and sunset (Auto Update daily)"	{exec="ON:./configurations/schedules/scheduleupdate.bat", autoupdate="false" }
+
+
+//'String	Sproeier_StartTime	"Start Time [%s]"	<calendar>	(Irrigation)	
+//'DateTime	Weather_LastUpdate	"Last Update [%1$ta %1$tR]"	<clock>
+//'String	Sproeier_Counter	"Sproeier Counter [%s]"
+//'Group	Weather_Chart	(All)	
+//'Number	Weather_Chart_Period	"Chart:"
+//'Number	Dummy_Chart_Period	"Chart:"
+//Number	Sproeier_Graphing	"Chart:"
+
+//Number Weather_Temperature "Outside Temperature [%.1f °C]" <temperature> { http="<[http://weather.yahooapis.com/forecastrss?w=638242&u=c:60000:XSLT(yahoo_weather_temperature.xsl)]" } 
+
+//Number sunrise   "Sunrise [%.1f]"   <temperature>   {http="<[http://http://api.openweathermap.org/data/2.5/weather?q=pretoria&mode=xml:3600000:XSLT(openweathermap_temperature.xsl)]" }

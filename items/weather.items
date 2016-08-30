@@ -1,0 +1,10 @@
+//Sun and Moon Details
+// shows the sunrise
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]"  {astro="planet=sun, type=rise, property=start"}
+// shows the sunset
+DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]"   {astro="planet=sun, type=set, property=end"}
+// displays the start, end and duration of the astronomical dawn
+DateTime Astronomical_Dawn_Start        "Astronomical Dawn Start [%1$tH:%1$tM]"  {astro="planet=sun, type=astroDawn, property=start"}
+DateTime Astronomical_Dawn_End          "Astronomical Dawn End [%1$tH:%1$tM]"    {astro="planet=sun, type=astroDawn, property=end"}
+
+//Number Weather_24hrRainfall "Rainfall last 24 hours [%.1f °C]" {http="<[http://localhost:8080/rest/items/Master_DOI0:5000:REGEX(.*?<status>(.*?)</status>.*)]"}
