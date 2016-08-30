@@ -1,0 +1,55 @@
+rule "Switch Tree Lights All ON"
+when
+        Item Lights_Tree_All changed from OFF to ON
+then {
+		sendCommand(Lights_DOI0,ON)
+		sendCommand(Lights_DOI1,ON)
+		sendCommand(Lights_DOI2,ON)
+		sendCommand(Lights_DOI3,ON)
+		//sendNotification("441larastreet@gmail.com", "Light Tree ALL ON")
+		sendNotification("johnjohn.fourie@gmail.com", "Light Tree ALL ON")
+	}  
+end
+
+
+rule "Switch Tree Lights All OFF"
+when 
+        Item Lights_Tree_All changed from ON to OFF
+then {
+		sendCommand(Lights_DOI0,OFF)
+		sendCommand(Lights_DOI1,OFF)
+		sendCommand(Lights_DOI2,OFF)
+		sendCommand(Lights_DOI3,OFF)
+		//sendNotification("441larastreet@gmail.com", "Light Tree ALL OFF")
+		sendNotification("johnjohn.fourie@gmail.com", "Light Tree ALL OFF")
+	}  
+end
+
+rule "Wave Pattern Switch to Close"
+when 
+	Item Lights_Wave changed from OFF to ON
+then
+	{
+		sendCommand(Lights_Wave,OFF)
+	}
+end
+
+rule "Switch Chrismas Light on Trees OFF at 22:00"
+when
+	Time cron "0 0 22 * * ?"		//Evaluate every day 22:00
+then
+	sendCommand(Lights_DOI0,OFF)
+	sendCommand(Lights_DOI1,OFF)
+	sendCommand(Lights_DOI2,OFF)
+	sendCommand(Lights_DOI3,OFF)
+	sendCommand(Lights_Tree_All,OFF)
+end
+
+rule "Outside Light Switched ON"
+when 
+	Item Station1_DOI1_Alarm changed from OFF to ON
+then
+	{
+	sendNotification("johnjohn.fourie@gmail.com", "Outside Light Station1 ON")	
+	}
+end

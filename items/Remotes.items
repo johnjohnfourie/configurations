@@ -1,0 +1,7 @@
+Switch	Remote_DOI0		"Landrover Garage"	 	{http=">[ON:POST:http://192.168.1.112/setDigitalPin?pin=0&state=true] >[OFF:POST:http://192.168.1.112/setDigitalPin?pin=0&state=false]"} //{autoupdate="false"}
+Switch	Remote_DOI1		"Workshop Garage"		{http=">[ON:POST:http://192.168.1.112/setDigitalPin?pin=1&state=true] >[OFF:POST:http://192.168.1.112/setDigitalPin?pin=1&state=false]"}
+Switch	Remote_DOI2		"Mercedes Garage"		{http=">[ON:POST:http://192.168.1.112/setDigitalPin?pin=2&state=true] >[OFF:POST:http://192.168.1.112/setDigitalPin?pin=2&state=false]"}
+Switch	Remote_DOI3		"Peugot Garage"			{http=">[ON:POST:http://192.168.1.112/setDigitalPin?pin=3&state=true] >[OFF:POST:http://192.168.1.112/setDigitalPin?pin=3&state=false]"}
+Switch	Remote_DOI4		"Main Gate"				{http=">[ON:POST:http://192.168.1.112/setDigitalPin?pin=4&state=true] >[OFF:POST:http://192.168.1.112/setDigitalPin?pin=4&state=false]"}
+Switch	Remote_DOI5		"Alarm Inside"			{autoupdate="false"}
+Switch	Remote_DOI6		"Alarm Outside"			{autoupdate="false"}

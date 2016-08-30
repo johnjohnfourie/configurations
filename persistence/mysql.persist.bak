@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Strategies {  
 default = everyChange  
 }  
@@ -5,3 +6,12 @@ default = everyChange
 Items {  
     * : strategy = default, restoreOnStartup  
 }  
+=======
+Strategies {  
+default = everyChange  
+}  
+ 
+Items {  
+    * : strategy = default, restoreOnStartup  
+}  
+>>>>>>> f935c6be663f9c80ed04a45b3bd1196e142f9fa1

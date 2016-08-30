@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Put any file containing persistence definitions here. They will be activated automatically.
 
 Note: Persistence definition files must have the extension '*.persist'
 
 Demo-files can be obtained from the archive 'distribution-demo-*.zip'.
+=======
+Put any file containing persistence definitions here. They will be activated automatically.
+
+Note: Persistence definition files must have the extension '*.persist'
+
+Demo-files can be obtained from the archive 'distribution-demo-*.zip'.
+>>>>>>> f935c6be663f9c80ed04a45b3bd1196e142f9fa1
