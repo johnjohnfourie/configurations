@@ -1,0 +1,36 @@
+DateTime alarm_last_connection "Last Updated [%1$tm/%1$td/%1$tY %1$tH:%1$tM:%1$tS]" <calendar>
+
+String alarm_status_inside  "Alarm State Inside [%s]"	<present>
+String alarm_status_outside "Alarm State Outside [%s]"	<present>
+
+Switch audio_alarm	"Audio Alarm [%s]"	<present>
+
+String 		zone1					"Kamer [%s]"		<present>
+Switch		zone1_alarm				"Kamer Alarm"	
+Switch		zone1_armed				"Kamer Armed"		
+Switch		zone1_status			"Kamer Status"
+String		zone1_group				"Kamer Group"	
+String		zone1_stay				"Kamer Stay"
+String 		zone1_sleep				"Kamer Sleep"
+String		zone1_config			"Kamer Configuration [%s]"			<present>
+
+
+String 		zone2					"Badkamer [%s]"		<present>		
+Switch		zone2_alarm				"Badkamer Alarm" 
+Switch		zone2_armed				"Badkamer Armed"	
+Switch		zone2_status			"Badkamer Status"	
+String		zone2_group				"Badkamer Group"	
+String		zone2_stay				"Badkamer Stay"
+String 		zone2_sleep				"Badkamer Sleep"
+String		zone2_config			"Badkamer Configuration [%s]"			<present>
+
+String 		zone3					"Kombuis [%s]"		<present>
+Switch		zone3_alarm				"Kombuis Alarm" 
+Switch		zone3_armed				"Kombuis Armed"
+Switch		zone3_status			"Kombuis Status"
+String		zone3_group				"Kombuis Group"	
+String		zone3_stay				"Kombuis Stay"
+String 		zone3_sleep				"Kombuis Sleep"
+String		zone3_config			"Kombuis Configuration [%s]"			<present>
+
+String		last_alarm				"Last Alarm [%s]"	
